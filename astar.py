@@ -1,6 +1,7 @@
 import heapq
 import sys
 from PIL import Image
+import time
 
 def AStar(start, goal, neighbor_nodes, dist_between, heuristic_cost_estimate):
     def reconstruct_path(came_from, current_node):
@@ -65,6 +66,7 @@ path_pixels = path_img.load()
 
 closedset = set()
 
+start_time = time.time()
 path = AStar(start,
              goal,
              von_neumann_neighbors,
@@ -73,6 +75,7 @@ path = AStar(start,
              #lambda p1,p2 : 4*manhattan(p1,p2),
              #squared_euclidean,
              )
+print time.time() - start_time
 
 for position in closedset:
     x,y = position
