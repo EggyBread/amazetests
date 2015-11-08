@@ -14,7 +14,6 @@ def AStar(start, goal, neighbor_nodes, dist_between, heuristic_cost_estimate):
     f_score = {start: g_score[start] + heuristic_cost_estimate(start, goal)}
     openheap = [(f_score[start], start)]
     openset = {start}
-    closedset = set()
     came_from = dict()
 
     while openset:
@@ -64,6 +63,8 @@ goal = (398, 25)
 path_img = Image.open(sys.argv[1])
 path_pixels = path_img.load()
 
+closedset = set()
+
 path = AStar(start,
              goal,
              von_neumann_neighbors,
@@ -72,6 +73,10 @@ path = AStar(start,
              #lambda p1,p2 : 4*manhattan(p1,p2),
              #squared_euclidean,
              )
+
+for position in closedset:
+    x,y = position
+    path_pixels[x,y] = (127,127,127)
 
 for position in path:
     x,y = position
