@@ -63,3 +63,4 @@ if __name__ == '__main__':
     print time.time() - start_time
 
     path_img.save(sys.argv[2])
+    base_img.save("p" + sys.argv[2])
