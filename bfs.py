@@ -4,12 +4,17 @@ import sys
 
 from Queue import Queue
 from PIL import Image
+import time
 
 start = (400,984)
 end = (398,25)
+start = (176,10)
+end = (196,360)
 
 def iswhite(value):
-    if value == (255,255,255):
+    if any(c < 225 for c in value):
+        return False
+    else:
         return True
 
 def getadjacent(n):
@@ -51,8 +56,10 @@ if __name__ == '__main__':
     path_img = Image.open(sys.argv[1])
     path_pixels = path_img.load()
 
+    start_time = time.time()
     for position in path:
         x,y = position
         path_pixels[x,y] = (255,0,0) # red
+    print time.time() - start_time
 
     path_img.save(sys.argv[2])
