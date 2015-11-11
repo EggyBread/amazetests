@@ -58,6 +58,8 @@ def squared_euclidean(p1, p2):
 
 start = (400, 984)
 goal = (398, 25)
+start = (176,10)
+goal = (196,360)
 
 # invoke: python mazesolver.py <mazefile> <outputfile>[.jpg|.png|etc.]
 
@@ -77,12 +79,18 @@ path = AStar(start,
              )
 print time.time() - start_time
 
-for position in closedset:
-    x,y = position
-    path_pixels[x,y] = (127,127,127)
-
 for position in path:
     x,y = position
     path_pixels[x,y] = (255,0,0) # red
 
 path_img.save(sys.argv[2])
+
+for position in closedset:
+    x,y = position
+    path_pixels[x,y] = (127,127,127) # grey
+
+for position in path:
+    x,y = position
+    path_pixels[x,y] = (255,0,0) # red
+
+path_img.save("p" + sys.argv[2])

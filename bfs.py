@@ -51,16 +51,17 @@ if __name__ == '__main__':
     base_img = Image.open(sys.argv[1])
     base_pixels = base_img.load()
 
+    start_time = time.time()
     path = BFS(start, end, base_pixels)
+    print time.time() - start_time
 
     path_img = Image.open(sys.argv[1])
     path_pixels = path_img.load()
 
-    start_time = time.time()
     for position in path:
         x,y = position
         path_pixels[x,y] = (255,0,0) # red
-    print time.time() - start_time
+        base_pixels[x,y] = (255,0,0) # red
 
     path_img.save(sys.argv[2])
     base_img.save("p" + sys.argv[2])
