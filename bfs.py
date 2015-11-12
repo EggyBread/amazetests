@@ -53,7 +53,14 @@ if __name__ == '__main__':
 
     start_time = time.time()
     path = BFS(start, end, base_pixels)
-    print time.time() - start_time
+
+    print str(time.time() - start_time) + " seconds"
+    print str(len(path)) + " path length"
+
+    greys = 0
+    for p in base_img.getdata():
+        greys += 1
+    print str(greys) + " greys"
 
     path_img = Image.open(sys.argv[1])
     path_pixels = path_img.load()

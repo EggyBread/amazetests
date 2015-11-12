@@ -77,7 +77,9 @@ path = AStar(start,
              #lambda p1,p2 : 4*manhattan(p1,p2),
              #squared_euclidean,
              )
-print time.time() - start_time
+print str(time.time() - start_time) + " seconds"
+print str(len(path)) + " path length"
+print str(len(closedset)) + " greys"
 
 for position in path:
     x,y = position
