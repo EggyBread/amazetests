@@ -59,7 +59,8 @@ if __name__ == '__main__':
 
     greys = 0
     for p in base_img.getdata():
-        greys += 1
+        if p == (127,127,127,255):
+            greys += 1
     print str(greys) + " greys"
 
     path_img = Image.open(sys.argv[1])
